@@ -79,37 +79,33 @@
     </header>
 
     <body>
-
-
+        <br>
         <!-- Banner Image  -->
         <div class="container d-flex justify-content-center">
             <div class="outer-wrapper ">
                 <div class="table-wrapper">
                     <table>
                         <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Retencion</th>
-                        </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Retencion</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="proveedor:${proveedores}">
-                            <td th:text="${proveedor.id}"></td>
-                            <td th:text="${proveedor.codigo}"></td>
-                            <td th:text="${proveedor.nombre}"></td>
-                            <td th:text="${proveedor.categoria}"></td>
-                            <td th:text="${proveedor.retencion}"></td>
-
-                        </tr>
+                            <tr th:each="proveedor:${proveedores}">
+                                <td th:text="${proveedor.id}"></td>
+                                <td th:text="${proveedor.codigo}"></td>
+                                <td th:text="${proveedor.nombre}"></td>
+                                <td th:text="${proveedor.categoria}"></td>
+                                <td th:text="${proveedor.retencion}"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
-
     </body>
 </html>

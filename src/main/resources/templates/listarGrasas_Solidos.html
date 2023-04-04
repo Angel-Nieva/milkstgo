@@ -79,27 +79,29 @@
     </header>
 
     <body>
+        <br>
         <div class="container d-flex justify-content-center">
             <div class="outer-wrapper ">
-                <table class="table-wrapper">
-                    <thead class="thead-dark">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>PROVEEDOR</th>
-                        <th>% GRASA</th>
-                        <th>% SOLIDO TOTAL</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="grasa_solido:${grasas_solidos}">
-                        <td th:text="${grasa_solido.id}"></td>
-                        <td th:text="${grasa_solido.proveedor}"></td>
-                        <td th:text="${grasa_solido.grasa}"></td>
-                        <td th:text="${grasa_solido.solido}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>PROVEEDOR</th>
+                                <th>% GRASA</th>
+                                <th>% SOLIDO TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grasa_solido:${grasas_solidos}">
+                                <td th:text="${grasa_solido.id}"></td>
+                                <td th:text="${grasa_solido.proveedor}"></td>
+                                <td th:text="${grasa_solido.grasa}"></td>
+                                <td th:text="${grasa_solido.solido}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>

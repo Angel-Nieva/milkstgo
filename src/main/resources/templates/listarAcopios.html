@@ -79,28 +79,32 @@
     </header>
 
     <body>
+        <br>
         <div class="container d-flex justify-content-center">
             <class class="outer-wrapper ">
-                <table class="table-wrapper">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>FECHA</th>
-                        <th>TURNO</th>
-                        <th>PROVEEDOR</th>
-                        <th>KLS LECHE</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="acopio:${acopios}">
-                        <td th:text="${acopio.id}"></td>
-                        <td th:text="${acopio.fecha}"></td>
-                        <td th:text="${acopio.turno}"></td>
-                        <td th:text="${acopio.proveedor}"></td>
-                        <td th:text="${acopio.kls_leche}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table>
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>FECHA</th>
+                            <th>TURNO</th>
+                            <th>PROVEEDOR</th>
+                            <th>KLS LECHE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="acopio:${acopios}">
+                            <td th:text="${acopio.id}"></td>
+                            <td th:text="${acopio.fecha}"></td>
+                            <td th:text="${acopio.turno}"></td>
+                            <td th:text="${acopio.proveedor}"></td>
+                            <td th:text="${acopio.kls_leche}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
             </class>
         </div>
     </body>
