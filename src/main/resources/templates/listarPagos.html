@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MilkStgo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">        <link rel="stylesheet" href="../static/css/style.css"
+                                                                                                                                                                                                                                        th:href="@{/css/style.css}"/>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </head>
+
+    <header class="header">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">MilkStgo</a>
+
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="mx-auto"></div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" href="#"
+                               role="button" aria-expanded="false"
+                               data-bs-toggle="dropdown" > Proveedores </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/proveedores}"> Listar proveedores</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/proveedores/nuevo}"> Nuevo Proveedor</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" href="#"
+                               role="button" aria-expanded="false"
+                               data-bs-toggle="dropdown" > Acopios </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/acopios}"> Listar Acopios</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/fileUploadAcopios}"> Subir Archivo</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" href="#"
+                               role="button" aria-expanded="false"
+                               data-bs-toggle="dropdown" > Grasas y Solidos </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/grasas_solidos}"> Listar Grasa y ST</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/fileUploadGrasas_Solidos}"> Subir Archivo</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <body>
+
+        <div class="outer-wrapper">
+            <div class="table-wrapper-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>QUINCENA </th>
+                            <th>CÓDIGO</th>
+                            <th>NOMBRE</th>
+                            <th>KLS LECHE</th>
+                            <th>DIAS ENVIOS</th>
+                            <th>PROMEDIO LECHE</th>
+                            <th>VARIACION LECHE</th>
+                            <th>GRASA</th>
+                            <th>VARIACIÓN GRASA</th>
+                            <th>SOLIDOS TOTALES</th>
+                            <th>VARIACION ST</th>
+                            <th>PAGO LECHE</th>
+                            <th>PAGO GRASA</th>
+                            <th>PAGO ST</th>
+                            <th>BONIFICACIÓN FRECUENCIA</th>
+                            <th>DCTO. LECHE</th>
+                            <th>DCTO. GRASA</th>
+                            <th>DCTO. ST</th>
+                            <th>PAGO TOTAL</th>
+                            <th>MONTO RETENCIÓN</th>
+                            <th>MONTO FINAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pago:${plantillaPagos}">
+                        <td th:text="${pago.quincena}"></td>
+                        <td th:text="${pago.codigo_proveedor}"></td>
+                        <td th:text="${pago.nombre_proveedor}"></td>
+                        <td th:text="${pago.kls_leche}"></td>
+                        <td th:text="${pago.diasEnvioLeche}"></td>
+                        <td th:text="${pago.avgKls_leche}"></td>
+                        <td th:text="${pago.variacion_leche}"></td>
+                        <td th:text="${pago.grasa}"></td>
+                        <td th:text="${pago.variacion_grasa}"></td>
+                        <td th:text="${pago.solidos_totales}"></td>
+                        <td th:text="${pago.variacion_st}"></td>
+                        <td th:text="${pago.pago_leche}"></td>
+                        <td th:text="${pago.pago_grasa}"></td>
+                        <td th:text="${pago.pago_st}"></td>
+                        <td th:text="${pago.bonificacion_frecuencia}"></td>
+                        <td th:text="${pago.dct_leche}"></td>
+                        <td th:text="${pago.dct_grasa}"></td>
+                        <td th:text="${pago.dct_st}"></td>
+                        <td th:text="${pago.pago_total}"></td>
+                        <td th:text="${pago.monto_retencion}"></td>
+                        <td th:text="${pago.monto_final}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </body>
+
+</html>

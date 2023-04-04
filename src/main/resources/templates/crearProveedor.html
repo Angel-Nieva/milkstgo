@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#"> Por agregar</a>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link"
+                                        th:href="@{/proveedores}">Control de proveedores</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-g col-md-5 col-sm-6 container justify-content-center card">
+                <h1 class="text center"> Registro de proveedores</h1>
+                <div class="card-body">
+                    <form th:action="@{/proveedores}" th:object="${proveedor}" method=POST>
+                        <div class="form-group">
+                            <label>Codigo : </label>
+                            <input type="text" name="codigo" th:fild="*{codigo}" class="form-control" placeholder="Ingrese el código del proveedor:" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Nombre : </label>
+                            <input type="text" name="nombre" th:fild="*{nombre}" class="form-control" placeholder="Ingrese el nombre del proveedor:" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Categoria : </label>
+                            <input type="text" name="categoria" th:fild="*{categoria}" class="form-control" placeholder="Ingrese la categoria del proveedor:" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Retencion : </label>
+                            <input type="text" name="retencion" th:fild="*{retencion}" class="form-control" placeholder="Ingrese retención del proveedor (Si / No):" required>
+                        </div>
+                        <br>
+                        <div class="box-footer">
+                            <button class="btn btn-success">Guardar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
