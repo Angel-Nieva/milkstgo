@@ -1,7 +1,6 @@
 package com.springboot.milkstgo.repositories;
 
 import com.springboot.milkstgo.entities.AcopioEntity;
-import com.springboot.milkstgo.entities.ProveedorEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

@@ -47,8 +47,7 @@ class AcopioRepositoryTest {
         Integer kls_leche = acopioRepository.klsLecheByproveedor(acopio1.getProveedor());
         //Then
         assertEquals(90, kls_leche);
-        acopioRepository.delete(acopio1);
-        acopioRepository.delete(acopio2);
+        acopioRepository.deleteAll();
     }
 
     @DisplayName("Test para calcular los acopios de un proveedor en la mañana")
@@ -100,8 +99,7 @@ class AcopioRepositoryTest {
         int dias = acopioRepository.diasEnvioLeche(acopio1.getProveedor());
         //Then
         assertEquals(1, dias);
-        acopioRepository.delete(acopio1);
-        acopioRepository.delete(acopio2);
+        acopioRepository.deleteAll();
     }
 
     @Test
@@ -114,7 +112,6 @@ class AcopioRepositoryTest {
         int avgLecheDiaria = acopioRepository.avgEnvioLeche(acopio1.getProveedor());
         //Then
         assertEquals(90, avgLecheDiaria);
-        acopioRepository.delete(acopio1);
-        acopioRepository.delete(acopio2);
+        acopioRepository.deleteAll();
     }
 }
