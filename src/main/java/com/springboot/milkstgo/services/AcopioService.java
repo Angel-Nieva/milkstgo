@@ -110,11 +110,6 @@ public class AcopioService {
 
     public Integer obtenerPromedioDiarioLeche(String proveedor){return acopioRepository.avgEnvioLeche(proveedor);}
 
-
-
-
-
-
     // Calcular el pago x kilo de leche segun la categoria del proveedor
     public int pagoCategoria(String categoria){
         return switch (categoria) {

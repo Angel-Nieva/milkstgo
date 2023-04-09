@@ -13,6 +13,9 @@ public class ProveedorService {
     @Autowired
     ProveedorRepository proveedorRepository;
 
+    public void elininarProveedores(){
+        proveedorRepository.deleteAll();
+    }
     public ArrayList<ProveedorEntity> obtenerProveedores(){
         return (ArrayList<ProveedorEntity>) proveedorRepository.findAll();
     }
