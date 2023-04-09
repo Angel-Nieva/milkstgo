@@ -37,7 +37,6 @@ class AcopioRepositoryTest {
         acopio2.setKls_leche("40");
     }
 
-    @DisplayName("Test para calcular los Kilos de leche de un acopio ")
     @Test
     void klsLecheByproveedor(){
         //Given
@@ -50,7 +49,6 @@ class AcopioRepositoryTest {
         acopioRepository.deleteAll();
     }
 
-    @DisplayName("Test para calcular los acopios de un proveedor en la mañana")
     @Test
     void envioProveedorManana() {
         //Given
@@ -61,7 +59,6 @@ class AcopioRepositoryTest {
         assertEquals(1, enviosManana);
         acopioRepository.delete(acopio1);
     }
-    @DisplayName("Test para calcular los acopios de un proveedor en la tarde")
     @Test
     void envioProveedorTarde() {
         //Given
@@ -73,7 +70,6 @@ class AcopioRepositoryTest {
         acopioRepository.delete(acopio2);
     }
 
-    @DisplayName("Test para calcular la quincena del acopio")
     @Test
     void quincenaByProveedor() {
         //Given
@@ -88,7 +84,6 @@ class AcopioRepositoryTest {
         acopioRepository.delete(acopio1);
     }
 
-    @DisplayName("Test para calcular los dias en un acopio de un proveedor")
     @Test
     void diasEnvioLeche() {
         //Given
