@@ -77,10 +77,10 @@ class AcopioRepositoryTest {
         SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy-MM-dd");
 
         //When
-        Date enviosTarde = acopioRepository.quincenaByProveedor(acopio1.getProveedor());
-        String a = formato_fecha.format(enviosTarde);
+        Date quincena = acopioRepository.quincenaByProveedor(acopio1.getProveedor());
+        String quincenaString = formato_fecha.format(quincena);
         //Then
-        assertEquals("2023-03-17", a);
+        assertEquals("2023-03-17", quincenaString);
         acopioRepository.delete(acopio1);
     }
 

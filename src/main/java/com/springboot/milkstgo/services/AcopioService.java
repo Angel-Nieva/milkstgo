@@ -32,7 +32,7 @@ public class AcopioService {
     public void guardarAcopio(AcopioEntity acopioEntity){
         acopioRepository.save(acopioEntity);
     }
-
+    @Generated
     public void guardarAcopioDB(Date fecha, String turno, String proveedor, String kls_leche) {
         AcopioEntity newData = new AcopioEntity();
         newData.setFecha(fecha);
@@ -110,74 +110,15 @@ public class AcopioService {
 
     public Integer obtenerPromedioDiarioLeche(String proveedor){return acopioRepository.avgEnvioLeche(proveedor);}
 
-    // Calcular el pago x kilo de leche segun la categoria del proveedor
-    public int pagoCategoria(String categoria){
-        return switch (categoria) {
-            case "A" -> (700);
-            case "B" -> (550);
-            case "C" -> (400);
-            case "D" -> (250);
-            default -> 0;
-        };
-    }
-
-    public int pagoLeche(String proveedor, String categoria){
-        return pagoCategoria(categoria)*klsLeche(proveedor);
-    }
-
-    // Calcular el pago x kilo de leche segun % grasa
-    public int pagoGrasa(int grasa){
-        if ( grasa >= 46  ){
-            return 120;
-        } else if ( grasa >= 21 ) {
-            return 80;
-        }else if ( grasa >= 0){
-            return 30;
-        }else{ // En caso de posibles valores negativos
-            return 0;
-        }
-    }
-
-    // Calcular el pago x kilo de leche segun % solidos totales
-    public int pagoSolidos(int solidos){
-        if ( solidos >= 36  ){
-            return 150;
-        } else if ( solidos >= 19 ) {
-            return 95;
-        } else if ( solidos >= 8){
-            return -90;
-        } else if ( solidos >= 0) {
-            return -130;
-        } else{ // En caso de posibles valores negativos
-            return 0;
-        }
-    }
-
+    // Calcula la cantidad de envios durante la tarde para el ultimo acopio
     public int  envioProveedorTarde(String proveedor){
         return acopioRepository.envioProveedorTarde(proveedor);
     }
 
+    // Calcula la cantidad de envios durante la mañana para el ultimo acopio
     public int  envioProveedorManana(String proveedor){
         return acopioRepository.envioProveedorManana(proveedor);
     }
 
-    public int pagoBonificacionFrecuencia(String proveedor, String categoria){
-        int enviosTarde  = envioProveedorTarde(proveedor);
-        int enviosManana = envioProveedorManana(proveedor);
-        int pago         = pagoLeche(proveedor,categoria);
-        if (enviosTarde > 10 && enviosManana > 10){
-            return (pago/100)*20;
-        } else if ( enviosManana > 10 ) {
-            return (pago/100)*12;
-        } else if ( enviosTarde > 10) {
-            return (pago/100)*8;
-        } else {
-            return 0;
-        }
-    }
 
-    public int pagoAcopioLeche(String proveedor, String categoria, int grasa, int solidos ){
-        return pagoLeche(proveedor,categoria) + pagoGrasa(grasa) + pagoSolidos(solidos)
-                + pagoBonificacionFrecuencia(proveedor,categoria);
-    }
 }
