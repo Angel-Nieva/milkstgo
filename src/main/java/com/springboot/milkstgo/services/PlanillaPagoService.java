@@ -100,7 +100,8 @@ public class PlanillaPagoService {
         planillaPagoRepository.save(pagoProveedor);
     }
 
-    public void borrarPlantillasByFecha(Date fecha){ planillaPagoRepository.deleteByFecha(fecha);}
+    public void borrarPlanillasByFecha(Date fecha){ planillaPagoRepository.deleteByFecha(fecha);}
+
     public ArrayList<PlanillaPagoEntity> obtenerPlantillaPagos(){
         return (ArrayList<PlanillaPagoEntity>) planillaPagoRepository.findAll();
     }
