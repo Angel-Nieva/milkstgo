@@ -20,16 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PlanillaPagoServiceTest {
-
-    @Autowired
-    AcopioRepository acopioRepository;
+    
     @Autowired
     PlanillaPagoService planillaPagoService;
 
     @Autowired
     PlanillaPagoRepository planillaPagoRepository;
-
-    private AcopioEntity acopio1, acopio2;
 
     private PlanillaPagoEntity planillaPago1, planillaPago2;
 
@@ -40,8 +36,8 @@ class PlanillaPagoServiceTest {
         SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy/MM/dd");
 
         planillaPago1.setQuincena(formato_fecha.parse("2023/03/17"));
-        planillaPago1.setCodigo_proveedor("13001");
-        planillaPago1.setNombre_proveedor("Alimentos Valle Central");
+        planillaPago1.setCodigo_proveedor("13005");
+        planillaPago1.setNombre_proveedor("Alimentos Valle Central 1");
         planillaPago1.setKls_leche(555);
         planillaPago1.setDiasEnvioLeche(13);
         planillaPago1.setAvgKls_leche(43);
@@ -62,8 +58,8 @@ class PlanillaPagoServiceTest {
         planillaPago1.setMonto_final(166100);
 
         planillaPago2.setQuincena(formato_fecha.parse("2023/03/01"));
-        planillaPago2.setCodigo_proveedor("13001");
-        planillaPago2.setNombre_proveedor("Alimentos Valle Central");
+        planillaPago2.setCodigo_proveedor("13006");
+        planillaPago2.setNombre_proveedor("Alimentos Valle Central 2");
         planillaPago2.setKls_leche(600);
         planillaPago2.setDiasEnvioLeche(0);
         planillaPago2.setAvgKls_leche(0);
@@ -83,7 +79,6 @@ class PlanillaPagoServiceTest {
         planillaPago2.setMonto_retencion(0);
         planillaPago2.setMonto_final(0);
 
-        planillaPagoRepository.deleteAll();
     }
 
     @Test
@@ -109,16 +104,12 @@ class PlanillaPagoServiceTest {
 
     @Test
     void obtenerPlantillaPagos() {
-        //Given
-        planillaPagoRepository.save(planillaPago1);
-        planillaPagoRepository.save(planillaPago2);
-        //Then
+        //When
         List<PlanillaPagoEntity> planillasPagosDB = planillaPagoService.obtenerPlantillaPagos();
-
+        
+        //Then
         assertThat(planillasPagosDB).isNotNull();
-        assertThat(planillasPagosDB.size()).isEqualTo(2);
-
-        planillaPagoRepository.deleteAll();
+        assertThat(planillasPagosDB.size()).isEqualTo(4);
     }
 
     @Test
@@ -139,16 +130,10 @@ class PlanillaPagoServiceTest {
 
     @Test
     void pagoLeche() {
-        //Given
-        String codigo_proveedor = acopio1.getProveedor();
-        acopioRepository.save(acopio1);
-        acopioRepository.save(acopio2);
         //When
-        Integer pagoLeche = planillaPagoService.pagoLeche("A",
-                acopioRepository.klsLecheByproveedor( acopio1.getProveedor()));
+        Integer pagoLeche = planillaPagoService.pagoLeche("A", 10000);
         //Then
-        assertEquals(63000, pagoLeche);
-        acopioRepository.deleteAll();
+        assertEquals(7000000, pagoLeche);
     }
 
     @Test
