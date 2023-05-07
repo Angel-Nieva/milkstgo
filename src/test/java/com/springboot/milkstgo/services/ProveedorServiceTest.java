@@ -25,35 +25,24 @@ class ProveedorServiceTest {
     @Autowired
     ProveedorService proveedorService;
 
-    ProveedorEntity proveedor1, proveedor2;
+    ProveedorEntity proveedor1;
 
     @BeforeEach
     void setUp() {
-        proveedorService.elininarProveedores();
         proveedor1 = new ProveedorEntity();
         proveedor1.setCategoria("A");
-        proveedor1.setCodigo("13001");
+        proveedor1.setCodigo("13005");
         proveedor1.setNombre("Alimentos Valle Central");
-        proveedor1.setRetencion("No");
-
-        proveedor2 = new ProveedorEntity();
-        proveedor2.setCategoria("B");
-        proveedor2.setCodigo("10001");
-        proveedor2.setNombre("Chilolac");
-        proveedor2.setRetencion("Si");
+        proveedor1.setRetencion("Si");
     }
 
     @Test
     void obtenerProveedores() {
-        //Given
-        proveedorService.guardarProveedor(proveedor1);
-        proveedorService.guardarProveedor(proveedor2);
         //When
         List<ProveedorEntity> proveedoresDB = proveedorService.obtenerProveedores();
         //Then
         assertThat(proveedoresDB).isNotNull();
-        assertThat(proveedoresDB.size()).isEqualTo(2);
-        proveedorService.elininarProveedores();
+        assertThat(proveedoresDB.size()).isEqualTo(3);
     }
 
     @Test
@@ -65,19 +54,18 @@ class ProveedorServiceTest {
         //Then
         assertThat(proveedorDB).isNotNull();
         assertThat(proveedorDB.getId()).isGreaterThan(0);
-        proveedorService.elininarProveedores();
+        proveedorRepository.delete(proveedor1);
     }
 
     @Test
     void obtenerCodigoProveedores() {
         //Given
         proveedorService.guardarProveedor(proveedor1);
-        proveedorService.guardarProveedor(proveedor2);
         //When
         List<String> codigos = proveedorService.obtenerCodigoProveedores();
         //Then
         assertThat(codigos).isNotNull();
-        proveedorService.elininarProveedores();
+        proveedorRepository.delete(proveedor1);
     }
 
     @Test
@@ -88,6 +76,7 @@ class ProveedorServiceTest {
         ProveedorEntity proveedorDB = proveedorService.obtenerProovedorByCodigo(proveedor1.getCodigo());
         //Then
         assertThat(proveedorDB).isNotNull();
-        assertEquals("13001",proveedorDB.getCodigo());
+        assertEquals("13005",proveedorDB.getCodigo());
+        proveedorRepository.delete(proveedor1);
     }
 }

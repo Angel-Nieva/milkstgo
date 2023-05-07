@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -29,7 +28,6 @@ class AcopioServiceTest {
 
     @BeforeEach
     void setUp() throws ParseException {
-        acopioRepository.deleteAll();
         acopio1 = new AcopioEntity();
         acopio2 = new AcopioEntity();
         SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy/MM/dd");
@@ -65,6 +63,7 @@ class AcopioServiceTest {
         //Then
         assertThat(acopioGuardado).isNotNull();
         assertThat(acopioGuardado.get().getId()).isGreaterThan(0);
+        acopioRepository.delete(acopio1);
     }
 
     @Test

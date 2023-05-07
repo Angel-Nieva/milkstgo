@@ -18,36 +18,25 @@ class ProveedorRepositoryTest {
     ProveedorRepository proveedorRepository;
 
     private ProveedorEntity proveedor1;
-    private ProveedorEntity proveedor2;
 
     @BeforeEach
     void setUp() {
-        proveedorRepository.deleteAll();
         proveedor1 = new ProveedorEntity();
         proveedor1.setCategoria("A");
-        proveedor1.setCodigo("13001");
+        proveedor1.setCodigo("13007");
         proveedor1.setNombre("Alimentos Valle Central");
         proveedor1.setRetencion("No");
 
-        proveedor2 = new ProveedorEntity();
-        proveedor2.setCategoria("B");
-        proveedor2.setCodigo("10001");
-        proveedor2.setNombre("Chilolac");
-        proveedor2.setRetencion("Si");
     }
 
     @Test
     void findAllCodigo() {
-        //Given
-        proveedorRepository.save(proveedor1);
-        proveedorRepository.save(proveedor2);
         //When
         List<String> codigos = proveedorRepository.findAllCodigo();
         //Then
         assertThat(codigos).isNotNull();
-        assertThat(codigos.size()).isEqualTo(2);
+        assertThat(codigos.size()).isEqualTo(3);
 
-        proveedorRepository.deleteAll();
     }
 
     @Test
@@ -60,6 +49,6 @@ class ProveedorRepositoryTest {
         assertThat(proveedor).isNotNull();
         assertThat(proveedor.getId()).isGreaterThan(0);
 
-        proveedorRepository.deleteAll();
+        proveedorRepository.delete(proveedor1);
     }
 }

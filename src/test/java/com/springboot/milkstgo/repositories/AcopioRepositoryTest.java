@@ -2,7 +2,6 @@ package com.springboot.milkstgo.repositories;
 
 import com.springboot.milkstgo.entities.AcopioEntity;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,17 @@
-server.port = 8090
+server:
+  port: 8090
 
-spring.datasource.url=jdbc:mysql://localhost:3306/milkstgo
-spring.datasource.username=root
-spring.datasource.password=angel
-spring.jpa.hibernate.ddl-auto=create
+spring:
+  application:
+    name: proyecto_milkstgo
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: MySQL8Dialect
+      ddl-auto: create
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbname: milkstgo
+    url: jdbc:mysql://localhost:3306/milkstgo
+    username: root
+    password: angel

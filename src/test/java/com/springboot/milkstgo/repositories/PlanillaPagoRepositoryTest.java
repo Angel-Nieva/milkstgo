@@ -24,7 +24,6 @@ class PlanillaPagoRepositoryTest {
 
     @BeforeEach
     void setUp() throws ParseException {
-        planillaPagoRepository.deleteAll();
         planillaPago = new PlanillaPagoEntity();
         SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy/MM/dd");
         planillaPago.setQuincena(formato_fecha.parse("2023/03/17"));
@@ -100,6 +99,7 @@ class PlanillaPagoRepositoryTest {
         //Then
         assertThat(planillaPagoAnterior).isNotNull();
         assertThat(planillaPagoAnterior.getId()).isGreaterThan(0);
-        planillaPagoRepository.deleteAll();
+        planillaPagoRepository.delete(planillaPago);
+        planillaPagoRepository.delete(planillaPago2);
     }
 }
