@@ -1,4 +1,6 @@
 data/
+sonarqube-9.9.0.65466
+jenkins.war
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
