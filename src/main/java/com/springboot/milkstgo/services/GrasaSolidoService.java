@@ -1,7 +1,7 @@
 package com.springboot.milkstgo.services;
 
-import com.springboot.milkstgo.entities.Grasa_SolidoEntity;
-import com.springboot.milkstgo.repositories.Grasa_SolidoRepository;
+import com.springboot.milkstgo.entities.GrasaSolidoEntity;
+import com.springboot.milkstgo.repositories.GrasaSolidoRepository;
 import lombok.Generated;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,33 +15,33 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class Grasa_SolidoService {
+public class GrasaSolidoService {
     @Autowired
-    Grasa_SolidoRepository grasa_solidoRepository;
+    GrasaSolidoRepository grasaSolidoRepository;
 
-    private final Logger logg = LoggerFactory.getLogger(Grasa_SolidoService.class);
+    private final Logger logg = LoggerFactory.getLogger(GrasaSolidoService.class);
 
-    public ArrayList<Grasa_SolidoEntity> obtenerGrasas_Solidos(){
-        return (ArrayList<Grasa_SolidoEntity>) grasa_solidoRepository.findAll();
+    public List<GrasaSolidoEntity> obtenerGrasaSolidos(){
+        return (ArrayList<GrasaSolidoEntity>) grasaSolidoRepository.findAll();
     }
-    public void guardarGrasa_Solido(Grasa_SolidoEntity Grasa_SolidoEntity){
-        grasa_solidoRepository.save(Grasa_SolidoEntity);
+    public void guardarGrasaSolido(GrasaSolidoEntity grasaSolidoEntity){
+        grasaSolidoRepository.save(grasaSolidoEntity);
     }
 
-    public void guardarGrasa_SolidoDB(String proveedor, Integer grasa, Integer solido) throws ParseException {
-        Grasa_SolidoEntity newData = new Grasa_SolidoEntity();
+    public void guardarGrasaSolidoDB(String proveedor, Integer grasa, Integer solido) {
+        GrasaSolidoEntity newData = new GrasaSolidoEntity();
         newData.setProveedor(proveedor);
         newData.setGrasa(grasa);
         newData.setSolido(solido);
-        guardarGrasa_Solido(newData);
+        guardarGrasaSolido(newData);
     }
 
     @Generated
-    public String guardarArchivoGrasa_Solido(MultipartFile file){
+    public String guardarArchivoGrasaSolido(MultipartFile file){
         String filename = file.getOriginalFilename();
         if(filename != null){
             if(!file.isEmpty()){
@@ -64,10 +64,10 @@ public class Grasa_SolidoService {
     }
 
     @Generated
-    public void leerCsvGrasa_Solido(String direccion){
+    public void leerCsvGrasaSolido(String direccion){
         String texto = "";
         BufferedReader bf = null;
-        grasa_solidoRepository.deleteAll();
+        grasaSolidoRepository.deleteAll();
         try{
             bf = new BufferedReader(new FileReader(direccion));
             String temp = "";
@@ -79,7 +79,7 @@ public class Grasa_SolidoService {
                 }
                 else{
                     String [] linea = bfRead.split(";");
-                    guardarGrasa_SolidoDB(linea[0], Integer.parseInt(linea[1]), Integer.parseInt(linea[2]));
+                    guardarGrasaSolidoDB(linea[0], Integer.parseInt(linea[1]), Integer.parseInt(linea[2]));
                     temp = temp + "\n" + bfRead;
                 }
             }
@@ -98,5 +98,5 @@ public class Grasa_SolidoService {
         }
     }
 
-    public Grasa_SolidoEntity buscarPorProveedor(String proveedor){return grasa_solidoRepository.findByProveedor(proveedor);}
+    public GrasaSolidoEntity buscarPorProveedor(String proveedor){return grasaSolidoRepository.findByProveedor(proveedor);}
 }

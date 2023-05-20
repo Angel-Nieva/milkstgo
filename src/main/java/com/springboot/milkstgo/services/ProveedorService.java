@@ -16,7 +16,7 @@ public class ProveedorService {
     public void elininarProveedores(){
         proveedorRepository.deleteAll();
     }
-    public ArrayList<ProveedorEntity> obtenerProveedores(){
+    public List<ProveedorEntity> obtenerProveedores(){
         return (ArrayList<ProveedorEntity>) proveedorRepository.findAll();
     }
     public ProveedorEntity guardarProveedor(ProveedorEntity proveedor){
@@ -24,7 +24,7 @@ public class ProveedorService {
     }
 
     public List<String> obtenerCodigoProveedores(){
-        return (List<String>) proveedorRepository.findAllCodigo();
+        return proveedorRepository.findAllCodigo();
     }
 
     public ProveedorEntity obtenerProovedorByCodigo(String codigo){return proveedorRepository.findProveedorByCodigo(codigo);}

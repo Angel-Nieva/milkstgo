@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -20,7 +20,7 @@ public class ProveedorController {
 
     @GetMapping({"/proveedores", "/"})
     public String listarProveedores(Model model) {
-        ArrayList<ProveedorEntity> proveedores = proveedorServices.obtenerProveedores();
+        List<ProveedorEntity> proveedores = proveedorServices.obtenerProveedores();
         model.addAttribute("proveedores",proveedores);
         return "listarProveedores";
     }

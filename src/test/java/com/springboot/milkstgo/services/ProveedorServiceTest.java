@@ -53,7 +53,7 @@ class ProveedorServiceTest {
         ProveedorEntity proveedorDB = proveedorService.obtenerProovedorByCodigo(proveedor1.getCodigo());
         //Then
         assertThat(proveedorDB).isNotNull();
-        assertThat(proveedorDB.getId()).isGreaterThan(0);
+        assertThat(proveedorDB.getId()).isPositive();
         proveedorRepository.delete(proveedor1);
     }
 

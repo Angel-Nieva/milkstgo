@@ -56,14 +56,31 @@ class AcopioServiceTest {
 
     @Test
     void guardarAcopio() {
-        //When
+        //Given
         acopioService.guardarAcopio(acopio1);
+        //When
         Optional<AcopioEntity> acopioGuardado = acopioRepository.findById(acopio1.getId());
-
         //Then
         assertThat(acopioGuardado).isNotNull();
-        assertThat(acopioGuardado.get().getId()).isGreaterThan(0);
+        assertThat(acopioGuardado.get().getId()).isPositive();
         acopioRepository.delete(acopio1);
+    }
+
+    @Test
+    void guardarAcopioDB() throws ParseException {
+        //Given
+        SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy/MM/dd");
+        //When
+        acopioService.guardarAcopioDB(
+                formato_fecha.parse("2023/03/17"),
+                "M",
+                "13001",
+                "50");
+        //Then
+        Optional<AcopioEntity> nuevoAcopio = acopioRepository.findById(3L);
+        assertThat(nuevoAcopio).isNotNull();
+        assertThat(nuevoAcopio.get().getId()).isPositive();
+        acopioRepository.delete(nuevoAcopio.get());
     }
 
     @Test

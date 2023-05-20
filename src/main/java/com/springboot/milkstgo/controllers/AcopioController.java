@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping
@@ -20,7 +20,7 @@ public class AcopioController {
 
     @GetMapping("/acopios")
     public String listarAcopios(Model model) {
-        ArrayList<AcopioEntity> acopios = acopioServices.obtenerAcopios();
+        List<AcopioEntity> acopios = acopioServices.obtenerAcopios();
         model.addAttribute("acopios",acopios);
         return "listarAcopios";
     }

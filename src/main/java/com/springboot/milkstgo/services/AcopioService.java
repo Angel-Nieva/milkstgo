@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class AcopioService {
@@ -26,19 +27,19 @@ public class AcopioService {
 
     private final Logger logg = LoggerFactory.getLogger(AcopioService.class);
 
-    public ArrayList<AcopioEntity> obtenerAcopios(){
+    public List<AcopioEntity> obtenerAcopios(){
         return (ArrayList<AcopioEntity>) acopioRepository.findAll();
     }
     public void guardarAcopio(AcopioEntity acopioEntity){
         acopioRepository.save(acopioEntity);
     }
-    @Generated
-    public void guardarAcopioDB(Date fecha, String turno, String proveedor, String kls_leche) {
+
+    public void guardarAcopioDB(Date fecha, String turno, String proveedor, String klsLeche) {
         AcopioEntity newData = new AcopioEntity();
         newData.setFecha(fecha);
         newData.setTurno(turno);
         newData.setProveedor(proveedor);
-        newData.setKls_leche(kls_leche);
+        newData.setKls_leche(klsLeche);
         guardarAcopio(newData);
     }
 
@@ -67,10 +68,9 @@ public class AcopioService {
 
     @Generated
     public void leerCsvAcopio(String direccion){
-        String texto = "";
         BufferedReader bf = null;
         acopioRepository.deleteAll();
-        SimpleDateFormat formato_fecha = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
         try{
             bf = new BufferedReader(new FileReader(direccion));
             String temp = "";
@@ -82,7 +82,7 @@ public class AcopioService {
                 }
                 else{
                     String [] linea = bfRead.split(";");
-                    guardarAcopioDB(formato_fecha.parse(linea[0]), linea[1], linea[2], linea[3]);
+                    guardarAcopioDB(formatoFecha.parse(linea[0]), linea[1], linea[2], linea[3]);
                     temp = temp + "\n" + bfRead;
                 }
             }
@@ -119,6 +119,5 @@ public class AcopioService {
     public int  envioProveedorManana(String proveedor){
         return acopioRepository.envioProveedorManana(proveedor);
     }
-
 
 }

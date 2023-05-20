@@ -1,9 +1,7 @@
 package com.springboot.milkstgo.controllers;
 
-import com.springboot.milkstgo.entities.Grasa_SolidoEntity;
-import com.springboot.milkstgo.entities.ProveedorEntity;
-import com.springboot.milkstgo.services.Grasa_SolidoService;
-import com.springboot.milkstgo.services.ProveedorService;
+import com.springboot.milkstgo.entities.GrasaSolidoEntity;
+import com.springboot.milkstgo.services.GrasaSolidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping
-public class Grasa_SolidoController {
+public class GrasaSolidoController {
     @Autowired
-    private Grasa_SolidoService grasa_solidoService;
+    private GrasaSolidoService grasa_solidoService;
 
     @GetMapping("/grasas_solidos")
     public String listarGrasa_Solidos(Model model) {
-        ArrayList<Grasa_SolidoEntity> grasas_solidos = grasa_solidoService.obtenerGrasas_Solidos();
+        List<GrasaSolidoEntity> grasas_solidos = grasa_solidoService.obtenerGrasaSolidos();
         model.addAttribute("grasas_solidos",grasas_solidos);
         return "listarGrasas_Solidos";
     }
@@ -36,9 +34,9 @@ public class Grasa_SolidoController {
 
     @PostMapping("/fileUploadGrasas_Solidos")
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-        grasa_solidoService.guardarArchivoGrasa_Solido(file);
+        grasa_solidoService.guardarArchivoGrasaSolido(file);
         redirectAttributes.addFlashAttribute("mensaje", "¡Archivo cargado correctamente!");
-        grasa_solidoService.leerCsvGrasa_Solido("Grasas.csv");
+        grasa_solidoService.leerCsvGrasaSolido("Grasas.csv");
         return "redirect:/fileUploadGrasas_Solidos";
     }
 
