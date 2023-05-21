@@ -13,7 +13,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">MilkStgo</a>
+                <a class="navbar-brand" href="/">MilkStgo</a>
 
                 <button
                         class="navbar-toggler"
@@ -69,6 +69,16 @@
                                 </li>
                                 <li>
                                     <a class="dropdown-item" th:href="@{/fileUploadGrasas_Solidos}"> Subir Archivo</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-black" href="#"
+                               role="button" aria-expanded="false"
+                               data-bs-toggle="dropdown" > Reportes </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/planillaPagos}"> Planilla de pagos</a>
                                 </li>
                             </ul>
                         </li>
