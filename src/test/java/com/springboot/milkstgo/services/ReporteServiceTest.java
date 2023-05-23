@@ -1,5 +1,6 @@
 package com.springboot.milkstgo.services;
 
+import com.springboot.milkstgo.controllers.ReporteController;
 import com.springboot.milkstgo.entities.AcopioEntity;
 import com.springboot.milkstgo.entities.ReporteEntity;
 import com.springboot.milkstgo.entities.GrasaSolidoEntity;
@@ -67,7 +68,6 @@ class ReporteServiceTest {
         reportePago1.setPago_total(166100);
         reportePago1.setMonto_retencion(0);
         reportePago1.setMonto_final(166100);
-
     }
 
     @Test
