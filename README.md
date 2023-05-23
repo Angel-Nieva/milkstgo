@@ -22,89 +22,24 @@ Se utilizan las siguientes herramientas principales para desarrollar el proyecto
 
 ## Comandos importantes
 
-Los siguientes son comandos importantes a tener en consideración.
-
-### Maven
-
-- Maven Install:
-
-```sh
-mvn clean install
-```
-
-- Maven Install (Sin tests):
-
-```sh
-mvn clean install -DskipTests
-```
-
-- Maven Run
-
-```sh
-mvn spring-boot:run
-```
-
-### Docker
-
-La cuenta de DockerHub utilizada es <USUARIO DOCKERHUB> y el repositorio se llama <NOMBRE REPOSITORIO>.
-
-- Ver contenedores:
-
-```sh
-docker ps
-```
-
-- Ver Imágenes:
-
-```sh
-docker image ls
-```
-
-- Docker Build (Crear Imágen)
-
-```sh
-docker build -t USUARIO/REPOSITORIO .
-```
-
-- Eliminar Imágen
-
-```sh
-docker rmi <nombre imagen>
-```
-
-- Eliminar Contenedor
-
-```sh
-docker rm -f <nombre contenedor>
-```
-
-- Subir Imágen a DockerHub
-
-```sh
-docker push USUARIO/REPOSITORIO
-```
-
-- Levantar Contenedor
-
-```sh
-docker-compose up
-```
-
-- Bajar Contenedor
-
-```sh
-docker-compose down
-```
+Los siguientes son comandos importantes para la presentacion.
 
 ### Terraform
 
-- Levantar Máquina Virtual de Digital Ocean:
+- Levantar Máquina Virtual de AWS:
 
 ```sh
-ssh root@IPV4
-```
+ssh -i key.pem ec2-user@(IP4 PUBLICA)
 
-En la consola de la MV, se debe aplicar docker-compose. La aplicación queda disponible en...
+En mi caso seria:
+ssh -i key.pem ec2-user@34.218.253.87
+finalmente:
+docker-compose --compatibility up
+
+luego de presentar:
+docker-compose down
+exit
+```
 
 ### Jenkins
 
@@ -119,15 +54,11 @@ java -jar jenkins.war
 ### SonarQube
 
 Para analizar manualmente con SonarQube, en la carpeta del proyecto:
+sonarqube-9.9.0.65466/bin/windows-x86-64:
+
 
 ```sh
-COMANDO SONARQUBE ACA
+StartSonar.bat
 ```
 
-## Ejecución paso a paso:
 
-1. Ejecutar Jenkins. Esto permitirá que se prueben todos los Tests Unitarios creados y se suba la imágen del proyecto a DockerHub.
-2. Revisar reporte de SonarQube. Esto permite comprobar los Codes Smells junto con el porcentaje de cobertura de los Tests.
-3. Levantar la Máquina Virtual de Digital Ocean / AWS.
-4. Levantar la aplicación mediante Docker-Compose.
-5. Acceder a la dirección web de la aplicación y probar cosas.
