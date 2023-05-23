@@ -4,7 +4,6 @@ import com.springboot.milkstgo.entities.GrasaSolidoEntity;
 import com.springboot.milkstgo.entities.ReporteEntity;
 import com.springboot.milkstgo.entities.ProveedorEntity;
 import com.springboot.milkstgo.repositories.ReporteRepository;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ import static java.lang.Math.round;
 
 @Service
 public class ReporteService {
-    public static final String LECHE = "leche";
     @Autowired
     ReporteRepository reporteRepository;
 
@@ -165,7 +163,7 @@ public class ReporteService {
         return round(variacion);
     }
 
-    public int descuento(@NotNull String descuento, int variacion, int pagoAcopio){
+    public int descuento(String descuento, int variacion, int pagoAcopio){
          String LECHE = "leche";
          String GRASA = "grasa";
          String SOLIDO = "solido";
